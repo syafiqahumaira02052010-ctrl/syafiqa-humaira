@@ -9,29 +9,29 @@ import { z } from 'zod';
 import { supabase } from '@/integrations/supabase/client';
 
 const contactSchema = z.object({
-  name: z.string().trim().min(1, 'Nama harus diisi').max(100, 'Nama terlalu panjang'),
-  email: z.string().trim().email('Email tidak valid').max(255, 'Email terlalu panjang'),
-  subject: z.string().trim().min(1, 'Subjek harus diisi').max(200, 'Subjek terlalu panjang'),
-  message: z.string().trim().min(1, 'Pesan harus diisi').max(2000, 'Pesan terlalu panjang'),
+  name: z.string().trim().min(1, 'Nama harus diisi').max(100),
+  email: z.string().trim().email('Email tidak valid').max(255),
+  subject: z.string().trim().min(1, 'Subjek harus diisi').max(200),
+  message: z.string().trim().min(1, 'Pesan harus diisi').max(2000),
 });
 
 const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'hello@developer.com',
-    href: 'mailto:hello@developer.com',
+    value: 'syafiqahumaira02052010@gmail.com',
+    href: 'mailto:syafiqahumaira02052010@gmail.com',
   },
   {
     icon: Phone,
     label: 'Telepon',
-    value: '+62 812 3456 7890',
-    href: 'tel:+6281234567890',
+    value: '+62 22 7668 6448',
+    href: 'tel:+622276686448',
   },
   {
     icon: MapPin,
     label: 'Lokasi',
-    value: 'Jakarta, Indonesia',
+    value: 'Banda Aceh, Indonesia',
     href: '#',
   },
 ];
@@ -74,7 +74,7 @@ export default function ContactSection() {
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+      const { error } = await supabase.functions.invoke('send-contact-email', {
         body: formData,
       });
 
@@ -82,15 +82,14 @@ export default function ContactSection() {
 
       toast({
         title: 'Pesan Terkirim! ✨',
-        description: 'Terima kasih telah menghubungi saya. Saya akan membalas secepatnya.',
+        description: 'Terima kasih telah menghubungi saya.',
       });
 
       setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (error: unknown) {
-      console.error('Error sending email:', error);
+    } catch (error) {
       toast({
         title: 'Gagal Mengirim',
-        description: 'Terjadi kesalahan. Silakan coba lagi atau hubungi langsung via email.',
+        description: 'Coba lagi ya.',
         variant: 'destructive',
       });
     } finally {
@@ -101,27 +100,33 @@ export default function ContactSection() {
   return (
     <section id="contact" className="py-20 md:py-32">
       <div className="container mx-auto px-4">
+
+        {/* HEADER */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
           <span className="text-primary font-medium mb-2 block">Kontak</span>
           <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
             Hubungi Saya
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: 80 }}
+            transition={{ duration: 0.6 }}
+            className="h-1 bg-primary mx-auto rounded-full"
+          />
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Info */}
+
+          {/* LEFT */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7 }}
             className="space-y-8"
           >
             <div>
@@ -129,9 +134,8 @@ export default function ContactSection() {
                 Mari Berkolaborasi!
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                Punya project menarik atau ingin berkolaborasi? Jangan ragu untuk 
-                menghubungi saya. Saya selalu terbuka untuk diskusi tentang project 
-                baru, ide kreatif, atau kesempatan untuk menjadi bagian dari visi Anda.
+                Punya ide atau ingin bekerja sama? Saya terbuka untuk diskusi 
+                dan pengalaman baru yang bisa berkembang bersama.
               </p>
             </div>
 
@@ -140,15 +144,18 @@ export default function ContactSection() {
                 <motion.a
                   key={info.label}
                   href={info.href}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="flex items-center gap-4 p-4 glass rounded-xl hover:shadow-card-hover transition-all group"
+                  whileHover={{ scale: 1.05, x: 5 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="flex items-center gap-4 p-4 glass rounded-xl transition group"
                 >
-                  <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                  <motion.div 
+                    whileHover={{ rotate: 10 }}
+                    className="p-3 rounded-lg bg-primary/10"
+                  >
                     <info.icon className="h-5 w-5 text-primary" />
-                  </div>
+                  </motion.div>
                   <div>
                     <p className="text-sm text-muted-foreground">{info.label}</p>
                     <p className="font-medium">{info.value}</p>
@@ -158,104 +165,90 @@ export default function ContactSection() {
             </div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* RIGHT FORM */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6 p-6 glass rounded-2xl shadow-card">
+            <motion.form 
+              onSubmit={handleSubmit} 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="space-y-6 p-6 glass rounded-2xl shadow-card"
+            >
+              
               <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium">
-                    Nama
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Nama Anda"
-                    className={errors.name ? 'border-destructive' : ''}
-                  />
-                  {errors.name && (
-                    <p className="text-xs text-destructive">{errors.name}</p>
-                  )}
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium">
-                    Email
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="email@example.com"
-                    className={errors.email ? 'border-destructive' : ''}
-                  />
-                  {errors.email && (
-                    <p className="text-xs text-destructive">{errors.email}</p>
-                  )}
-                </div>
+                {["name", "email"].map((field, i) => (
+                  <motion.div 
+                    key={field}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="space-y-2"
+                  >
+                    <label className="text-sm font-medium capitalize">{field}</label>
+                    <Input
+                      name={field}
+                      type={field === "email" ? "email" : "text"}
+                      value={formData[field as keyof typeof formData]}
+                      onChange={handleChange}
+                      placeholder={`Masukkan ${field}`}
+                      className="focus:scale-[1.02] transition"
+                    />
+                    {errors[field] && (
+                      <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xs text-destructive">
+                        {errors[field]}
+                      </motion.p>
+                    )}
+                  </motion.div>
+                ))}
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-medium">
-                  Subjek
-                </label>
+                <label className="text-sm font-medium">Subjek</label>
                 <Input
-                  id="subject"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  placeholder="Subjek pesan"
-                  className={errors.subject ? 'border-destructive' : ''}
+                  className="focus:scale-[1.02] transition"
                 />
-                {errors.subject && (
-                  <p className="text-xs text-destructive">{errors.subject}</p>
-                )}
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium">
-                  Pesan
-                </label>
+                <label className="text-sm font-medium">Pesan</label>
                 <Textarea
-                  id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Tuliskan pesan Anda..."
                   rows={5}
-                  className={errors.message ? 'border-destructive' : ''}
+                  className="focus:scale-[1.02] transition"
                 />
-                {errors.message && (
-                  <p className="text-xs text-destructive">{errors.message}</p>
-                )}
               </div>
 
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full rounded-full"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Mengirim...
-                  </>
-                ) : (
-                  <>
-                    <Send className="h-4 w-4 mr-2" />
-                    Kirim Pesan
-                  </>
-                )}
-              </Button>
-            </form>
+              <motion.div whileTap={{ scale: 0.95 }}>
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full rounded-full"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      Mengirim...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4 mr-2" />
+                      Kirim Pesan
+                    </>
+                  )}
+                </Button>
+              </motion.div>
+
+            </motion.form>
           </motion.div>
         </div>
       </div>
