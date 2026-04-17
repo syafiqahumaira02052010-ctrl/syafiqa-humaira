@@ -6,125 +6,138 @@
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 275 60% 10%;
+    /* 🌸 LIGHT SAKURA */
+    --background: 330 100% 97%;
+    --foreground: 335 50% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 270 20% 10%;
+    --card-foreground: 335 50% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 10%;
+    --popover-foreground: 335 50% 20%;
 
-    --primary: 270 100% 20%;
+    --primary: 330 80% 70%; /* pink sakura */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 270 15% 92%;
-    --secondary-foreground: 220 20% 20%;
+    --secondary: 330 60% 92%;
+    --secondary-foreground: 335 50% 25%;
 
-    --muted: 210 20% 98%;
-    --muted-foreground: 285 80% 70%;
+    --muted: 330 100% 96%;
+    --muted-foreground: 330 30% 60%;
 
-    --accent: 275 80% 65%;
+    --accent: 280 70% 80%; /* ungu pastel */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 275 15% 88%;
-    --input: 220 15% 88%;
-    --ring: 175 80% 40%;
+    --border: 330 40% 85%;
+    --input: 330 40% 90%;
+    --ring: 330 80% 70%;
 
     --radius: 0.75rem;
 
-    /* Custom tokens */
+    /* 🌸 Gradient Sakura */
     --gradient-primary: linear-gradient(
       135deg,
-      hsl(303, 78%, 62%),
-      hsl(309, 98%, 17%)
+      hsl(330 80% 70%),
+      hsl(280 70% 80%)
     );
+
     --gradient-hero: linear-gradient(
       180deg,
-      hsl(210 20% 98%) 0%,
-      hsl(210 25% 94%) 100%
+      hsl(330 100% 97%) 0%,
+      hsl(330 60% 94%) 100%
     );
+
     --navbg: linear-gradient(
       180deg,
-      hsl(314, 100%, 80%) 0%,
-      hsl(0, 0%, 100%) 100%
+      hsl(330 80% 85%) 0%,
+      hsl(0 0% 100%) 100%
     );
-    --shadow-glow: 0 0 40px hsla(311, 100%, 65%, 0.8);
-    --shadow-card: 0 4px 20px hsl(220 20% 10% / 0.08);
-    --shadow-card-hover: 0 8px 30px hsl(220 20% 10% / 0.12);
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 175 80% 40%;
+    /* 🌸 Shadow */
+    --shadow-glow: 0 0 40px hsla(330, 80%, 70%, 0.5);
+    --shadow-card: 0 4px 20px hsl(330 30% 50% / 0.08);
+    --shadow-card-hover: 0 8px 30px hsl(330 30% 50% / 0.15);
+
+    /* Sidebar */
+    --sidebar-background: 330 100% 98%;
+    --sidebar-foreground: 335 50% 20%;
+    --sidebar-primary: 330 80% 70%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 330 60% 95%;
+    --sidebar-accent-foreground: 335 50% 20%;
+    --sidebar-border: 330 40% 90%;
+    --sidebar-ring: 330 80% 70%;
   }
 
   .dark {
-    --background: 220 25% 6%;
-    --foreground: 210 20% 98%;
+    /* 🌸 DARK SAKURA */
+    --background: 330 30% 8%;
+    --foreground: 330 40% 95%;
 
-    --card: 220 25% 10%;
-    --card-foreground: 210 20% 98%;
+    --card: 330 30% 12%;
+    --card-foreground: 330 40% 95%;
 
-    --popover: 220 25% 10%;
-    --popover-foreground: 210 20% 98%;
+    --popover: 330 30% 12%;
+    --popover-foreground: 330 40% 95%;
 
-    --primary: 275 80% 50%;
-    --primary-foreground: 220 25% 6%;
+    --primary: 330 80% 70%;
+    --primary-foreground: 330 30% 8%;
 
-    --secondary: 220 20% 18%;
-    --secondary-foreground: 210 20% 90%;
+    --secondary: 330 30% 18%;
+    --secondary-foreground: 330 40% 90%;
 
-    --muted: 275 100% 22%;
-    --muted-foreground: 275 15% 78%;
+    --muted: 330 30% 15%;
+    --muted-foreground: 330 30% 70%;
 
-    --accent: 270 10% 50%;
-    --accent-foreground: 220 25% 6%;
+    --accent: 280 60% 70%;
+    --accent-foreground: 330 30% 8%;
 
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 275 100% 22%;
-    --input: 220 20% 18%;
-    --ring: 275 80% 50%;
+    --border: 330 30% 20%;
+    --input: 330 30% 18%;
+    --ring: 330 80% 70%;
 
-    /* Custom tokens dark */
+    /* 🌸 Gradient Dark */
     --gradient-primary: linear-gradient(
-      210deg,
-      hsl(0, 0%, 71%),
-      hsl(0, 0%, 100%)
+      135deg,
+      hsl(330 80% 70%),
+      hsl(280 60% 70%)
     );
+
     --gradient-hero: linear-gradient(
       180deg,
-      hsl(220 25% 6%) 0%,
-      hsl(220 30% 10%) 100%
+      hsl(330 30% 8%) 0%,
+      hsl(330 30% 12%) 100%
     );
+
     --navbg: linear-gradient(
       180deg,
-      hsl(290, 73%, 52%) 0%,
-      hsl(300, 2%, 17%) 100%
+      hsl(330 40% 20%) 0%,
+      hsl(330 30% 10%) 100%
     );
-    --shadow-glow: 0 0 60px hsla(281, 81%, 79%, 0.4);
-    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.3);
-    --shadow-card-hover: 0 8px 30px hsl(175 80% 50% / 0.15);
-    --sidebar-background: 220 25% 8%;
-    --sidebar-foreground: 210 20% 90%;
-    --sidebar-primary: 175 80% 50%;
+
+    /* 🌸 Shadow dark */
+    --shadow-glow: 0 0 60px hsla(330, 80%, 70%, 0.4);
+    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.4);
+    --shadow-card-hover: 0 8px 30px hsl(330 80% 70% / 0.2);
+
+    --sidebar-background: 330 30% 10%;
+    --sidebar-foreground: 330 40% 90%;
+    --sidebar-primary: 330 80% 70%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 20% 15%;
-    --sidebar-accent-foreground: 210 20% 90%;
-    --sidebar-border: 220 20% 18%;
-    --sidebar-ring: 175 80% 50%;
+    --sidebar-accent: 330 30% 15%;
+    --sidebar-accent-foreground: 330 40% 90%;
+    --sidebar-border: 330 30% 18%;
+    --sidebar-ring: 330 80% 70%;
   }
 }
 
+/* BASE */
 @layer base {
   * {
     @apply border-border;
@@ -135,20 +148,17 @@
     font-family: "Inter", sans-serif;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     font-family: "Space Grotesk", sans-serif;
   }
 }
 
+/* COMPONENTS */
 @layer components {
   .bg-navbg {
     background: var(--navbg);
   }
+
   .text-gradient {
     @apply bg-clip-text text-transparent;
     background-image: var(--gradient-primary);
@@ -179,6 +189,7 @@
   }
 }
 
+/* UTILITIES */
 @layer utilities {
   .animate-float {
     animation: float 6s ease-in-out infinite;
@@ -188,27 +199,13 @@
     animation: pulse-glow 2s ease-in-out infinite;
   }
 
-  .animate-spin-slow {
-    animation: spin 20s linear infinite;
-  }
-
   @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
+    0%,100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
   }
 
   @keyframes pulse-glow {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.7;
-    }
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.7; }
   }
 }

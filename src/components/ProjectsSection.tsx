@@ -1,80 +1,28 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, Play, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-import PetirImg from '../assets/petir.png';
-import JoinUsGif from '../assets/joinus.gif';
-import WeatherImg from '../assets/weatheer.gif';
-
-const slideVariants = {
-  enter: (direction) => ({
-    x: direction > 0 ? 100 : -100,
-    opacity: 0,
-  }),
-  center: { x: 0, opacity: 1 },
-  exit: (direction) => ({
-    x: direction < 0 ? 100 : -100,
-    opacity: 0,
-  }),
-};
-
-const CardCarousel = ({ images }) => {
-  const [[page, direction], setPage] = useState([0, 0]);
-  const imageIndex = Math.abs(page % images.length);
-
-  const paginate = (dir) => setPage([page + dir, dir]);
-
-  useEffect(() => {
-    const timer = setInterval(() => paginate(1), 4000);
-    return () => clearInterval(timer);
-  }, [page]);
-
-  return (
-    <div className="relative group flex items-center justify-center w-full h-full overflow-hidden rounded-xl">
-      <AnimatePresence initial={false} custom={direction}>
-        <motion.img
-          key={page}
-          src={images[imageIndex]}
-          custom={direction}
-          variants={slideVariants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{ duration: 0.5 }}
-          className="absolute w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-      </AnimatePresence>
-
-      <div className="absolute inset-0 flex justify-between items-center px-2 opacity-0 group-hover:opacity-100 transition">
-        <button onClick={() => paginate(-1)}><ChevronLeft /></button>
-        <button onClick={() => paginate(1)}><ChevronRight /></button>
-      </div>
-    </div>
-  );
-};
-
-// 🔥 DATA BARU (lebih sesuai kamu)
+// 🔥 DATA (pakai emoji, bukan gambar)
 const projects = [
   {
     title: 'Karya Tulisan Pribadi',
-    description: 'Kumpulan tulisan yang saya buat untuk mengekspresikan ide, perasaan, dan pengalaman hidup.',
+    description: 'Kumpulan tulisan untuk mengekspresikan ide, perasaan, dan pengalaman hidup.',
     tags: ['Writing', 'Creative', 'Personal'],
-    image: [PetirImg, JoinUsGif],
+    emoji: '✍️',
     color: 'from-pink-500/20 to-purple-500/20',
   },
   {
     title: 'Eksplorasi Traveling',
-    description: 'Dokumentasi perjalanan ke berbagai tempat yang memberi inspirasi dan pengalaman baru.',
-    tags: ['Travel', 'Explore', 'Lifestyle'],
-    image: [JoinUsGif, WeatherImg],
+    description: 'Perjalanan ke berbagai tempat yang memberi inspirasi dan pengalaman baru.',
+    tags: ['Travel', 'Explore'],
+    emoji: '🌍',
     color: 'from-green-500/20 to-blue-500/20',
   },
   {
-    title: 'Konten Hiburan & Inspirasi',
-    description: 'Kumpulan aktivitas menonton dan belajar dari berbagai sumber untuk menambah wawasan.',
-    tags: ['Learning', 'Entertainment'],
-    image: [WeatherImg, PetirImg],
+    title: 'Hiburan & Inspirasi',
+    description: 'Menonton dan belajar dari berbagai sumber untuk menambah wawasan.',
+    tags: ['Learning', 'Fun'],
+    emoji: '🎬',
     color: 'from-orange-500/20 to-red-500/20',
   },
 ];
@@ -105,15 +53,21 @@ export default function ProjectsSection() {
               key={project.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ y: -10 }}
+              whileHover={{ y: -10, scale: 1.03 }}
               transition={{ delay: index * 0.1 }}
               className="group"
             >
               <div className="h-full p-6 glass rounded-2xl shadow-card hover:shadow-xl transition flex flex-col">
-                
-                <div className={`aspect-video rounded-xl mb-4 bg-gradient-to-br ${project.color}`}>
-                  <CardCarousel images={project.image} />
-                </div>
+
+                {/* EMOJI (GANTI GAMBAR) */}
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  className={`aspect-video flex items-center justify-center rounded-xl mb-4 bg-gradient-to-br ${project.color}`}
+                >
+                  <span className="text-6xl drop-shadow-lg">
+                    {project.emoji}
+                  </span>
+                </motion.div>
 
                 <h3 className="font-bold text-lg group-hover:text-primary transition">
                   {project.title}
