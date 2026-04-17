@@ -10,6 +10,7 @@ export default function HeroSection() {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
   const socialLinks = [
     {
       icon: Github,
@@ -24,6 +25,7 @@ export default function HeroSection() {
     { icon: Youtube, href: "https://youtube.com/", label: "YouTube" },
     { icon: Instagram, href: "https://instagram.com/", label: "Instagram" },
   ];
+
   return (
     <section
       id="home"
@@ -33,6 +35,7 @@ export default function HeroSection() {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12">
+          
           {/* FOTO KIRI */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -41,8 +44,8 @@ export default function HeroSection() {
             className="flex-shrink-0"
           >
             <img
-              src="/foto akun1.jpg" // ganti dengan foto kamu
-              alt="Naufal"
+              src="/foto akun1.jpg"
+              alt="Profile"
               className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-primary shadow-glow"
             />
           </motion.div>
@@ -55,17 +58,18 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
             >
-              <span className="text-gradient">Naufal Portfolio</span>
+              <span className="text-gradient">My Portfolio</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg md:text-xl text-muted-foreground mb-8"
+              className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed"
             >
-              Saya membangun aplikasi web yang indah dan fungsional, serta
-              membagikan pengetahuan melalui konten yang inspiratif.
+              Saya adalah seorang pelajar yang bersemangat dalam mengembangkan diri, 
+              menyukai hal-hal baru, serta gemar menulis dan menjelajahi pengalaman 
+              untuk terus menjadi pribadi yang lebih baik.
             </motion.p>
 
             <motion.div
