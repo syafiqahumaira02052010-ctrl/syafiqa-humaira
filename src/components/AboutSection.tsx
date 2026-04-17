@@ -73,7 +73,7 @@ export default function AboutSection() {
                 className="aspect-square rounded-3xl overflow-hidden glass shadow-2xl relative z-10"
               >
                 <img
-                  src="/foto akun1.jpg"
+                  src="/syafiqa01.jpg"
                   alt="Profile"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
